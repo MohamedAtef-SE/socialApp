@@ -1,0 +1,39 @@
+
+
+<div class="flex justify-center w-4/5 m-auto  items-center h-screen">
+<div class="h-fit">
+<h1 class="text-2xl font-semibold text-sky-600 pb-4">Linked</h1>
+<p class="text-4xl">Linked helps you connect and share with the people in your life.</p>
+</div>
+<div class="flex h-fit flex-col bg-white rounded p-3">
+<form [formGroup]="SignInFormGroup" (ngSubmit)="onSigninSubmit()">
+  <div class="w-fit my-2 mx-auto">
+    <input type="text" formControlName="email" name="email" class="w-full rounded my-2 border-none px-1.5 py-2 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="Email address">
+    @if(SignInFormGroup.get('email')?.errors && SignInFormGroup.get('email')?.touched){
+      <p class="text-center text-red-500 font-semibold">Invalid Email</p>
+    }
+  </div>
+  <div class="w-fit my-2 mx-auto">
+    <input type="password" formControlName="password" name="password" class=" rounded my-2 border-none px-1.5 py-2 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="Password">
+    @if(SignInFormGroup.get('password')?.errors && SignInFormGroup.get('password')?.touched){
+      <p class="text-center text-red-500 font-semibold">Invalid password</p>
+    }
+  </div>
+  @if(SignInFormGroup.get('email')?.errors || SignInFormGroup.get('password')?.errors){
+    <button disabled type="submit" class="block w-full mt-3 disabled:bg-red-500 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+      Log in
+    </button>
+  }@else {
+    <button type="submit" class="block w-full disabled:bg-red-500 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+      Log in
+    </button>
+  }
+ 
+</form>
+<div class="mt-5 border-t-2 pt-5 m-8">
+    <button routerLink="/register" type="button" class="block w-full rounded-md bg-lime-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600">
+        Create new account
+    </button>
+  </div>
+</div>
+</div>

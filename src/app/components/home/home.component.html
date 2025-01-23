@@ -1,0 +1,31 @@
+<main class="lg:w-1/3 mx-auto my-3 flex flex-col gap-4">
+    <!-- One Post -->
+    @for(post of UsersPosts().posts; track post.id){
+        <article class="bg-white p-3 rounded-md flex flex-col gap-4">
+            <!-- Header -->
+             <div class="flex items-center gap-3">
+                <img [src]="post.user.photo" class="rounded-full w-10 h-10" alt="profile picture">
+                <div class="flex flex-col">
+                    <h3 class="font-bold">{{post.user.name}}</h3>
+                    <span class="font-light text-gray-400">{{post.createdAt | date}}</span>
+                </div>
+             </div>
+             <p>{{post.body}}</p>
+             @if(post.image){
+                <img [src]="post.image" class="w-full rounded-md" [alt]="post.body.slice(0,5)">
+             }
+             <button class="text-sky-600 self-center">Show comments</button>
+
+             <app-comments [PostId]="post.id" ></app-comments>
+            </article>
+    }
+    <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      [infiniteScrollDisabled]="this.LoadingDataInProgress()"
+      (scrolled)="onScroll()"
+    ></div>
+    
+    </main>
